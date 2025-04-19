@@ -1,9 +1,8 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ 
-    model: "gemini-2.0-flash" ,
+const model = genAI.getGenerativeModel({
+    model: "gemini-2.0-flash",
     systemInstruction: `
                 Here’s a solid system instruction for your AI code reviewer:
 
@@ -82,13 +81,12 @@ const model = genAI.getGenerativeModel({
 
 
 async function generateContent(prompt) {
-  
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
-  const text = await response.text();
+    const result = await model.generateContent(prompt);
 
-//   console.log(text);
-  return text;
+    console.log(result.response.text())
+
+    return result.response.text();
+
 }
 
-module.exports = generateContent
+module.exports = generateContent   

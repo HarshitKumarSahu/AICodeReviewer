@@ -1,16 +1,18 @@
-const express = require("express");
-const aiRouter = require("./routes/ai.routes")
+const express = require('express');
+const aiRoutes = require('./routes/ai.routes')
+const cors = require('cors')
 
-const app = express();
+const app = express()
+
+app.use(cors())
 
 // used for post request in /getReview
 app.use(express.json())
 
-//index route or home route
-app.get("/", (req,res)=>{
-    res.send("test route")
+app.get('/', (req, res) => {
+    res.send('Hello World')
 })
 
-app.use("/ai", aiRouter)
+app.use('/ai', aiRoutes)
 
-module.exports = app;
+module.exports = app
